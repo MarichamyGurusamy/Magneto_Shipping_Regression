@@ -14,7 +14,7 @@ public class BaseTest extends WebdriverManager{
 	@Parameters("browser")
 	public void setupSite(String browser) throws InterruptedException {
         driver= launchBrowser(browser);	
-		driver.get("https://magento.softwaretestingboard.com/what-is-new.html");
+		driver.get("https://magento.softwaretestingboard.com/");
 	}
 	
 	@AfterMethod
