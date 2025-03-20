@@ -2,6 +2,7 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.sikuli.script.FindFailed;
 import org.testng.Assert;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Test;
@@ -30,5 +31,21 @@ public class HomePageTest extends BaseTest {
 		Assert.assertEquals(actualhomepageTitle, home.homePageTitle);
 
 
+	}
+	
+	public void pageheaderContentsValidationforGuestuser() {
+		
+		homePage home = new homePage(driver);
+		
+		boolean headerLogo = Logo.isDisplayed();
+		Assert.assertTrue(headerLogo);
+
+		try {
+			screen.find(logoImagePath);
+		} catch (FindFailed e) {
+
+			Assert.fail("Logo not found");
+			e.printStackTrace();
+		}
 	}
 }
