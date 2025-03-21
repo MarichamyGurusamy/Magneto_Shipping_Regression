@@ -27,7 +27,7 @@ public class homePage {
 
 	Actions action = new Actions(driver);
 
-	Screen screen = new Screen();
+	public Screen screen = new Screen();
 
 	// Guest user Header Web Elements
 	@FindBy(xpath = "//div[@class='panel header']//a[contains(text(),'Sign In')]")
@@ -39,7 +39,7 @@ public class homePage {
 	@FindBy(xpath = "//a[@aria-label='store logo']//img")
 	public WebElement Logo;
 
-	String logoImagePath = "https://magento.softwaretestingboard.com/pub/static/version1695896754/frontend/Magento/luma/en_US/images/logo.svg";
+	public String logoImagePath = "https://magento.softwaretestingboard.com/pub/static/version1695896754/frontend/Magento/luma/en_US/images/logo.svg";
 
 	@FindBy(id = "ui-id-3")
 	public WebElement whatsNewTopNav;
@@ -114,7 +114,7 @@ public class homePage {
 	public WebElement TrainingVideoLink;
 
 	@FindBy(id = "ui-id-7")
-	public WebElement gearTrainingTopNav;
+	public WebElement TrainingTopNav;
 
 	@FindBy(id = "ui-id-8")
 	public WebElement saleTopNav;
@@ -504,13 +504,13 @@ public class homePage {
 	
 	public void clickTrainingLink() {
 
-		gearTrainingTopNav.click();
+		TrainingTopNav.click();
 
 	}
 
 	public void hoverTrainingLink() {
 
-		action.moveToElement(gearTrainingTopNav).perform();
+		action.moveToElement(TrainingTopNav).perform();
 
 	}
 	
@@ -519,6 +519,7 @@ public class homePage {
 		TrainingVideoLink.click();
 
 	}
+	
 
 	public void HeaderSignInLInkVerification() {
 
