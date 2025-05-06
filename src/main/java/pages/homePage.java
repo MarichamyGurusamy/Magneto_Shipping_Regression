@@ -19,13 +19,16 @@ import org.testng.Assert;
 public class homePage {
 
 	private WebDriver driver;
+	Actions action;
 
 	public homePage(WebDriver driver) {
-		PageFactory.initElements(driver, this);
 		this.driver = driver;
+		PageFactory.initElements(driver, this);
+		this.action = new Actions(driver);
+		
 	}
 
-	Actions action = new Actions(driver);
+	
 
 	public Screen screen = new Screen();
 
@@ -39,7 +42,7 @@ public class homePage {
 	@FindBy(xpath = "//a[@aria-label='store logo']//img")
 	public WebElement Logo;
 
-	public String logoImagePath = "https://magento.softwaretestingboard.com/pub/static/version1695896754/frontend/Magento/luma/en_US/images/logo.svg";
+	public String logoImagePath = "D:\\JavaRevise\\Magneto_Shipping_Regression\\images\\logo.png";
 
 	@FindBy(id = "ui-id-3")
 	public WebElement whatsNewTopNav;
