@@ -38,7 +38,7 @@ public class HomePageTest extends BaseTest {
 	}
 
 	@Test
-	public void pageheaderContentsValidationforGuestuser() {
+	public void pageheaderContentsValidationforGuestuser() throws InterruptedException {
 
 		homePage home = new homePage(driver);
 		boolean logoIsDisplaying = home.Logo.isDisplayed();
@@ -46,6 +46,7 @@ public class HomePageTest extends BaseTest {
 		Assert.assertTrue(logoIsDisplaying);
 
 		try {
+			wait.until(ExpectedConditions.visibilityOf(home.Logo));
 			home.screen.find(home.logoImagePath);
 		} catch (FindFailed e) {
 			home.screen.capture().save("screenshots/", "failed_screen.png");
