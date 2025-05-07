@@ -1,11 +1,16 @@
 package tests;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.print.attribute.standard.JobHoldUntil;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.sikuli.script.FindFailed;
@@ -19,8 +24,11 @@ import utils.WebdriverManager;
 
 public class HomePageTest extends BaseTest {
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	
+	Actions actions;
 
-	@Test
+	
+	@Test(priority = 1)
 	public void homePageURLandTitleVerification() {
 		homePage home = new homePage(driver);
 		String actualhomepageURL = home.getHomePageURL();
@@ -36,8 +44,8 @@ public class HomePageTest extends BaseTest {
 		Assert.assertEquals(actualhomepageTitle, home.homePageTitle);
 
 	}
-
-	@Test
+    
+	@Test(priority = 2)
 	public void pageheaderContentsValidationforGuestuser() throws InterruptedException {
 
 		homePage home = new homePage(driver);
@@ -103,12 +111,39 @@ public class HomePageTest extends BaseTest {
 		Assert.assertTrue(isSaleTopNavLinkisDisplaying);
 
 	}
-    @Test
+
+	@Test(priority = 3)
+	public void verifyAllSubcategoryLinksUnderWomenTopNav() {
+		
+		homePage home = new homePage(driver);
+		
+		home.action.moveToElement(home.womenTopNav).perform();
+		
+		wait.until(ExpectedConditions.visibilityOfAllElements(home.womenTopNav));
+
+		List<WebElement> firstLevelLinks = driver.findElements(By.xpath(home.WomensTopNavFirstLevelCategories));
+
+		int actualFirstlevelCategoryCount = firstLevelLinks.size();
+
+		int expectedFirstlevelCategoryCount = home.expectedFirstLevelWomensCategories.length;
+
+		Assert.assertEquals(actualFirstlevelCategoryCount, expectedFirstlevelCategoryCount);
+
+		for (int i = 0; i < actualFirstlevelCategoryCount; i++) {
+
+			String link = firstLevelLinks.get(i).getText();
+			System.out.println(link);
+			link = home.expectedFirstLevelWomensCategories[i];
+		}
+
+	}
+
+	@Test(priority = 4)
 	public void verifytheHeaderLinksByClickingAsaGuestuser() {
 
 		homePage home = new homePage(driver);
 		WhatsNewPage WNP = new WhatsNewPage(driver);
-		
+
 		home.whatsNewTopNav.click();
 		wait.until(ExpectedConditions.visibilityOf(WNP.whatsNewPageHeading));
 		String ActualwhatsNewPageTitle = driver.getTitle();
@@ -120,6 +155,8 @@ public class HomePageTest extends BaseTest {
 		Assert.assertEquals(ActualwhatsNewPageURL, WNP.expectedURL, "URL Matching Success fully");
 
 		Assert.assertEquals(ActualwhatsNewPageTitle, WNP.expectedPageTitle, "Page tile Matching correctly");
+
+		home.Logo.click();
 
 	}
 

@@ -14,18 +14,22 @@ import org.testng.Assert;
 public class homePage {
 
 	private WebDriver driver;
-	Actions action;
+	public Actions action;
 
 	public homePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		this.action = new Actions(driver);
-		
+
 	}
 
-	
-
 	public Screen screen = new Screen();
+
+	/* xpaths and Expected subcatagory links for validating the womens top nav */
+
+	public String WomensTopNavFirstLevelCategories = "//a[span[text()='Women']]/following-sibling::ul[@class='level0 submenu ui-menu ui-widget ui-widget-content ui-corner-all']/li/a";
+
+	public String expectedFirstLevelWomensCategories[] = { "Tops", "Bottoms" };
 
 	// Guest user Header Web Elements
 	@FindBy(xpath = "//div[@class='panel header']//a[contains(text(),'Sign In')]")
@@ -253,7 +257,7 @@ public class homePage {
 		action.moveToElement(HeaderwomenTopsSubcategoryLink).perform();
 
 	}
-	
+
 	public void clickWomensTops_Jacketscategory() {
 
 		HeaderwomenTops_JacketSubcategoryLink.click();
@@ -265,7 +269,7 @@ public class homePage {
 		action.moveToElement(HeaderwomenTops_JacketSubcategoryLink).perform();
 
 	}
-	
+
 	public void clickWomensTops_Hoodiecategory() {
 
 		HeaderwomenTops_HoodieSubcategoryLink.click();
@@ -277,7 +281,7 @@ public class homePage {
 		action.moveToElement(HeaderwomenTops_HoodieSubcategoryLink).perform();
 
 	}
-	
+
 	public void clickWomensTops_Teescategory() {
 
 		HeaderwomenTops_TeesSubcategoryLink.click();
@@ -289,7 +293,7 @@ public class homePage {
 		action.moveToElement(HeaderwomenTops_TeesSubcategoryLink).perform();
 
 	}
-	
+
 	public void clickWomensTops_Brascategory() {
 
 		HeaderwomenTops_BrasSubcategoryLink.click();
@@ -301,9 +305,6 @@ public class homePage {
 		action.moveToElement(HeaderwomenTops_BrasSubcategoryLink).perform();
 
 	}
-	
-	
-	
 
 	public void clickWomensCategoryBottoms() {
 
@@ -328,7 +329,7 @@ public class homePage {
 		action.moveToElement(HeaderwomenBottom_PantsSubcategoryLink).perform();
 
 	}
-	
+
 	public void clickWomensBottom_Shortscategory() {
 
 		HeaderwomenBottoms_ShortsSubcategoryLink.click();
@@ -340,7 +341,7 @@ public class homePage {
 		action.moveToElement(HeaderwomenBottoms_ShortsSubcategoryLink).perform();
 
 	}
-	
+
 	public void clickmenTopNav() {
 
 		menTopNav.click();
@@ -352,7 +353,7 @@ public class homePage {
 		action.moveToElement(menTopNav).perform();
 
 	}
-	
+
 	public void clickmensCategoryTops() {
 
 		HeadermenTopsSubcategoryLink.click();
@@ -364,7 +365,7 @@ public class homePage {
 		action.moveToElement(HeadermenTopsSubcategoryLink).perform();
 
 	}
-	
+
 	public void clickmensTops_Jacketscategory() {
 
 		HeadermenTops_JacketSubcategoryLink.click();
@@ -376,7 +377,7 @@ public class homePage {
 		action.moveToElement(HeadermenTops_JacketSubcategoryLink).perform();
 
 	}
-	
+
 	public void clickmensTops_Hoodiecategory() {
 
 		HeadermenTops_HoodieSubcategoryLink.click();
@@ -388,7 +389,7 @@ public class homePage {
 		action.moveToElement(HeadermenTops_HoodieSubcategoryLink).perform();
 
 	}
-	
+
 	public void clickmensTops_Teescategory() {
 
 		HeaderwomenTops_TeesSubcategoryLink.click();
@@ -400,7 +401,7 @@ public class homePage {
 		action.moveToElement(HeaderwomenTops_TeesSubcategoryLink).perform();
 
 	}
-	
+
 	public void clickmensTops_Tankscategory() {
 
 		HeaderwomenTops_BrasSubcategoryLink.click();
@@ -412,9 +413,6 @@ public class homePage {
 		action.moveToElement(HeadermenTops_TanksSubcategoryLink).perform();
 
 	}
-	
-	
-	
 
 	public void clickmensCategoryBottoms() {
 
@@ -439,7 +437,7 @@ public class homePage {
 		action.moveToElement(HeadermenBottom_PantsSubcategoryLink).perform();
 
 	}
-	
+
 	public void clickmensBottom_Shortscategory() {
 
 		HeadermenBottoms_ShortsSubcategoryLink.click();
@@ -451,7 +449,7 @@ public class homePage {
 		action.moveToElement(HeadermenBottoms_ShortsSubcategoryLink).perform();
 
 	}
-	
+
 	public void clickGearTopNavcategory() {
 
 		gearTopNav.click();
@@ -463,7 +461,7 @@ public class homePage {
 		action.moveToElement(gearTopNav).perform();
 
 	}
-	
+
 	public void clickGearBagsSubcategory() {
 
 		Headergear_BagSubcategoryLink.click();
@@ -475,7 +473,7 @@ public class homePage {
 		action.moveToElement(Headergear_BagSubcategoryLink).perform();
 
 	}
-	
+
 	public void clickGearFitnessSubcategory() {
 
 		Headergear_FitnessSubcategoryLink.click();
@@ -487,7 +485,7 @@ public class homePage {
 		action.moveToElement(Headergear_FitnessSubcategoryLink).perform();
 
 	}
-	
+
 	public void clickGearWatchSubcategory() {
 
 		Headergear_WatchSubcategoryLink.click();
@@ -499,7 +497,7 @@ public class homePage {
 		action.moveToElement(Headergear_WatchSubcategoryLink).perform();
 
 	}
-	
+
 	public void clickTrainingLink() {
 
 		TrainingTopNav.click();
@@ -511,13 +509,12 @@ public class homePage {
 		action.moveToElement(TrainingTopNav).perform();
 
 	}
-	
+
 	public void clickTrainingVideoDownloadLink() {
 
 		TrainingVideoLink.click();
 
 	}
-	
 
 	public void HeaderSignInLInkVerification() {
 
@@ -543,11 +540,9 @@ public class homePage {
 
 		createAccountLink.click();
 	}
-	
+
 	public void getSubcategoryLinksFromWomenTopNavCategory() {
-		
-		
-		
+
 	}
 
 	public String getSearchBoxPlaceHolderText() {
@@ -573,7 +568,7 @@ public class homePage {
 
 	}
 
-	public void topNavigationLinksVerification() {
+	public void AvailableSubcategoryLinksUnderWomenTopNav() {
 
 	}
 
