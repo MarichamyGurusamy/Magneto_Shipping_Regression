@@ -26,10 +26,140 @@ public class homePage {
 	public Screen screen = new Screen();
 
 	/* xpaths and Expected subcatagory links for validating the womens top nav */
-
+	
 	public String WomensTopNavFirstLevelCategories = "//a[span[text()='Women']]/following-sibling::ul[@class='level0 submenu ui-menu ui-widget ui-widget-content ui-corner-all']/li/a";
 
+	public String WomensTopsSubLevelCategories = "//li[@class='level1 nav-2-1 category-item first parent ui-menu-item']//ul//li";
+
+	public String WomensBottomsSubLevelCategories = "//li[@class='level1 nav-2-2 category-item last parent ui-menu-item']//ul//li";
+
 	public String expectedFirstLevelWomensCategories[] = { "Tops", "Bottoms" };
+	
+	public String expectedWomensTopsSubLevelCategories[] = { "Jackets", "Hoodies & Sweatshirts", "Tees", "Bras & Tanks" };
+	
+	public String expectedWomensBottomsSubLevelCategories[] = { "Pants", "Shorts"};
+	
+	public String WomenTopNavFirstLevelCategoryNavigationURLS[] =  {
+			
+			"https://magento.softwaretestingboard.com/women/tops-women.html",
+			"https://magento.softwaretestingboard.com/women/bottoms-women.html"
+			                                                    
+	};
+	
+	public String WomenTopNavFirstLevelCategoryPageTiltles[] =  {"Tops - Women","Bottoms - Women"};
+	
+	public String WomenTopsSubLevelCategoryNavigationURLS[] =  {
+			
+			"https://magento.softwaretestingboard.com/women/tops-women/jackets-women.html",
+			"https://magento.softwaretestingboard.com/women/tops-women/hoodies-and-sweatshirts-women.html",
+			"https://magento.softwaretestingboard.com/women/tops-women/tees-women.html",
+			"https://magento.softwaretestingboard.com/women/tops-women/tanks-women.html"
+			                                                    
+	};
+	
+	public String WomenTopsSubLevelCategoryPageTiltles[] =  {"Jackets - Tops - Women","Hoodies & Sweatshirts - Tops - Women", "Tees - Tops - Women", "Bras & Tanks - Tops - Women"};
+	
+	public String WomenBottomsSubLevelCategoryNavigationURLS[] =  {
+			
+			"https://magento.softwaretestingboard.com/women/bottoms-women/pants-women.html",
+			"https://magento.softwaretestingboard.com/women/bottoms-women/shorts-women.html",
+			
+			                                                    
+	};
+	
+	public String WomenBottomsSubLevelCategoryPageTiltles[] =  {"Pants - Bottoms - Women","Shorts - Bottoms - Women"};
+	
+	
+/* xpaths and Expected subcatagory links for validating the mens top nav */
+	
+	public String mensTopNavFirstLevelCategories = "//a[span[text()='Men']]/following-sibling::ul[@class='level0 submenu ui-menu ui-widget ui-widget-content ui-corner-all']/li/a";
+
+	public String mensTopsSubLevelCategories = "//li[@class='level1 nav-3-1 category-item first parent ui-menu-item']//ul//li";
+
+	public String mensBottomsSubLevelCategories = "//li[@class='level1 nav-3-2 category-item has-active last parent ui-menu-item']//ul//li";
+
+	public String expectedFirstLevelmensCategories[] = { "Tops", "Bottoms" };
+	
+	public String expectedmensTopsSubLevelCategories[] = { "Jackets", "Hoodies & Sweatshirts", "Tees", "Tanks" };
+	
+	public String expectedmensBottomsSubLevelCategories[] = { "Pants", "Shorts"};
+	
+	public String menTopNavFirstLevelCategoryNavigationURLS[] =  {
+			
+			"https://magento.softwaretestingboard.com/men/tops-men.html",
+			"https://magento.softwaretestingboard.com/men/bottoms-men.html"
+			                                                    
+	};
+	
+	public String menTopNavFirstLevelCategoryPageTiltles[] =  {"Tops - Men","Bottoms - Men"};
+	
+	public String menTopsSubLevelCategoryNavigationURLS[] =  {
+			
+			"https://magento.softwaretestingboard.com/men/tops-men/jackets-men.html",
+			"https://magento.softwaretestingboard.com/men/tops-men/hoodies-and-sweatshirts-men.html",
+			"https://magento.softwaretestingboard.com/men/tops-men/tees-men.html",
+			"https://magento.softwaretestingboard.com/men/tops-men/tanks-men.html"
+			                                                    
+	};
+	
+	public String menTopsSubLevelCategoryPageTiltles[] =  {"Jackets - Tops - Men","Hoodies & Sweatshirts - Tops - Men", "Tees - Tops - Men", "Tanks - Tops - Men"};
+	
+	public String menBottomsSubLevelCategoryNavigationURLS[] =  {
+			
+			"https://magento.softwaretestingboard.com/men/bottoms-men/pants-men.html",
+			"https://magento.softwaretestingboard.com/men/bottoms-men/shorts-men.html",
+			
+			                                                    
+	};
+	
+	public String menBottomsSubLevelCategoryPageTiltles[] =  {"Pants - Bottoms - Men","Shorts - Bottoms - Men"};
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// Guest user Header Web Elements
 	@FindBy(xpath = "//div[@class='panel header']//a[contains(text(),'Sign In')]")
