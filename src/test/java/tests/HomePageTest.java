@@ -44,6 +44,26 @@ public class HomePageTest extends BaseTest {
 
 	}
 
+	@Test(priority = 2, enabled = false)
+	public void verifytheHeaderLinksByClickingAsaGuestuser() {
+
+		homePage home = new homePage(driver);
+		WhatsNewPage WNP = new WhatsNewPage(driver);
+		home.whatsNewTopNav.click();
+		wait.until(ExpectedConditions.visibilityOf(WNP.whatsNewPageHeading));
+		String ActualwhatsNewPageTitle = driver.getTitle();
+		String ActualwhatsNewPageURL = driver.getCurrentUrl();
+		String AcutalPageHeading = WNP.getPageHeading();
+
+		Assert.assertEquals(AcutalPageHeading, WNP.expectedwhatsNewPageHeading, "Page have correct Heading");
+
+		Assert.assertEquals(ActualwhatsNewPageURL, WNP.expectedURL, "URL Matching Success fully");
+
+		Assert.assertEquals(ActualwhatsNewPageTitle, WNP.expectedPageTitle, "Page tile Matching correctly");
+
+		home.Logo.click();
+
+	}
 	@Test(priority = 2, enabled = false )
 	public void pageheaderContentsValidationforGuestuser() throws InterruptedException {
 
@@ -115,11 +135,20 @@ public class HomePageTest extends BaseTest {
 	public void verifyAllSubcategoryLinksUnderWomenTopNav() throws InterruptedException {
 
 		homePage home = new homePage(driver);
+		
+		home.womenTopNav.click();
+		String Women_Category_URL = driver.getCurrentUrl();
+		Assert.assertEquals(Women_Category_URL, home.WomensCategoryURL);
+		System.out.println("Page URL------" + Women_Category_URL + "==" + home.WomensCategoryURL);
+		String Women_Category_PageHeading = driver.findElement(By.tagName("h1")).getText();
+		Assert.assertEquals(Women_Category_PageHeading, home.WomensCategoryPageHeading);
+		System.out.println("Page Heading------" + Women_Category_PageHeading + "==" + home.WomensCategoryPageHeading);
+		home.Logo.click();
 
 		home.action.moveToElement(home.womenTopNav).perform();
 
 		wait.until(ExpectedConditions.visibilityOfAllElements(home.womenTopNav));
-
+		
 		List<WebElement> firstLevelLinks = driver.findElements(By.xpath(home.WomensTopNavFirstLevelCategories));
 		
 		List<WebElement> womenTopsSubCategries = driver.findElements(By.xpath(home.WomensTopsSubLevelCategories));
@@ -219,11 +248,19 @@ public class HomePageTest extends BaseTest {
 
 	}
 	
-	@Test(priority = 4,enabled = true)
+	@Test(priority = 4,enabled = false)
 
 	public void verifyAllSubcategoryLinksUnderMenTopNav() throws InterruptedException {
 
 		homePage home = new homePage(driver);
+		home.menTopNav.click();
+		String men_Category_URL = driver.getCurrentUrl();
+		Assert.assertEquals(men_Category_URL, home.mensCategoryURL);
+		System.out.println("Page URL------" + men_Category_URL + "==" + home.mensCategoryURL);
+		String men_Category_PageHeading = driver.findElement(By.tagName("h1")).getText();
+		Assert.assertEquals(men_Category_PageHeading, home.mensCategoryPageHeading);
+		System.out.println("Page Heading------" + men_Category_PageHeading + "==" + home.mensCategoryPageHeading);
+		home.Logo.click();
 
 		home.action.moveToElement(home.menTopNav).perform();
 
@@ -328,26 +365,86 @@ public class HomePageTest extends BaseTest {
 
 	}
 
-	@Test(priority = 4, enabled = false)
-	public void verifytheHeaderLinksByClickingAsaGuestuser() {
-
-		homePage home = new homePage(driver);
-		WhatsNewPage WNP = new WhatsNewPage(driver);
-
-		home.whatsNewTopNav.click();
-		wait.until(ExpectedConditions.visibilityOf(WNP.whatsNewPageHeading));
-		String ActualwhatsNewPageTitle = driver.getTitle();
-		String ActualwhatsNewPageURL = driver.getCurrentUrl();
-		String AcutalPageHeading = WNP.getPageHeading();
-
-		Assert.assertEquals(AcutalPageHeading, WNP.expectedwhatsNewPageHeading, "Page have correct Heading");
-
-		Assert.assertEquals(ActualwhatsNewPageURL, WNP.expectedURL, "URL Matching Success fully");
-
-		Assert.assertEquals(ActualwhatsNewPageTitle, WNP.expectedPageTitle, "Page tile Matching correctly");
-
-		home.Logo.click();
-
+	@Test(priority = 6, enabled=true)
+	public void gearTopNavandSubcategoryLinks() {
+		
+		homePage home =  new homePage(driver);
+		
+		wait.until(ExpectedConditions.visibilityOf(home.gearTopNav));
+		
+		home.clickGearTopNavcategory();
+		
+		String actual_gearPage_URL = driver.getCurrentUrl();
+		
+		System.out.println(actual_gearPage_URL+"===="+home.gearPageURL);
+		
+		Assert.assertEquals(actual_gearPage_URL,home.gearPageURL);
+		
+		String actual_gearPage_Title = driver.getTitle();
+		
+		System.out.println(actual_gearPage_Title+"===="+home.gear_PageTitle);
+		
+		Assert.assertEquals(actual_gearPage_Title, home.gear_PageTitle);
+		
+		String getGearPageHeading =  driver.findElement(By.tagName("h1")).getText();
+		
+		System.out.println(getGearPageHeading+"===="+home.gearText);
+		
+		Assert.assertEquals(getGearPageHeading, home.gearText);
+		
+		home.clickheaderLogo();
+		
+		wait.until(ExpectedConditions.visibilityOf(home.gearTopNav));
+		
+		home.action.moveToElement(home.gearTopNav).perform();
+		
+		List <WebElement> gear_subCategories = driver.findElements(By.xpath(home.gear_subcategories));
+		
+		int actual_gear_category_count =  gear_subCategories.size();
+		
+		System.out.println("category count :"+actual_gear_category_count);
+		
+		int expected_gear_category_count = home.gear_Categories.length;
+		
+		System.out.println("storedcategory count :"+expected_gear_category_count);
+		
+		Assert.assertEquals(actual_gear_category_count, expected_gear_category_count);
+		
+		for(int i = 0; i < actual_gear_category_count; i++) {
+			
+			home.action.moveToElement(home.gearTopNav).perform();
+			
+			List <WebElement> refetch_gear_subCategories = driver.findElements(By.xpath(home.gear_subcategories));
+			
+			String subcategoryLinks = refetch_gear_subCategories.get(i).getText();
+			
+			System.out.println(subcategoryLinks+"=="+home.gear_Categories[i]);
+			
+			Assert.assertEquals(subcategoryLinks, home.gear_Categories[i]);
+			
+			refetch_gear_subCategories.get(i).click();
+			
+			String currentCategoryURL = driver.getCurrentUrl();
+			
+			Assert.assertEquals(currentCategoryURL,home.gear_SubcategoryPageURLs[i]);
+			
+			String currentCategorypageTitle = driver.getTitle();
+			
+			Assert.assertEquals(currentCategorypageTitle,home.gear_SubcategoryPageTitles[i]);
+			
+			String currentCategorypageHeading = driver.findElement(By.tagName("h1")).getText();
+			
+			Assert.assertEquals(currentCategorypageHeading,home.gear_Categories[i]);
+			
+			home.clickheaderLogo();
+				
+			
+		}
+		
+		
 	}
+	
+	
+	
 
 }

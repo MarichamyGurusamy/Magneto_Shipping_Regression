@@ -27,6 +27,12 @@ public class homePage {
 
 	/* xpaths and Expected subcatagory links for validating the womens top nav */
 	
+	public String WomensCategoryPageHeading = "Women";
+
+	public String WomensCategoryTitle = "Women";
+
+	public String WomensCategoryURL = "https://magento.softwaretestingboard.com/women.html";
+
 	public String WomensTopNavFirstLevelCategories = "//a[span[text()='Women']]/following-sibling::ul[@class='level0 submenu ui-menu ui-widget ui-widget-content ui-corner-all']/li/a";
 
 	public String WomensTopsSubLevelCategories = "//li[@class='level1 nav-2-1 category-item first parent ui-menu-item']//ul//li";
@@ -72,7 +78,13 @@ public class homePage {
 	
 /* xpaths and Expected subcatagory links for validating the mens top nav */
 	
-	public String mensTopNavFirstLevelCategories = "//a[span[text()='Men']]/following-sibling::ul[@class='level0 submenu ui-menu ui-widget ui-widget-content ui-corner-all']/li/a";
+	public String mensCategoryPageHeading = "Men";
+
+	public String mensCategoryTitle = "Men";
+
+	public String mensCategoryURL = "https://magento.softwaretestingboard.com/men.html";
+	
+	public String mensTopNavFirstLevelCategories = "//a[span[text()='Men']/following-sibling::ul[@class='level0 submenu ui-menu ui-widget ui-widget-content ui-corner-all']/li/a";
 
 	public String mensTopsSubLevelCategories = "//li[@class='level1 nav-3-1 category-item first parent ui-menu-item']//ul//li";
 
@@ -115,50 +127,27 @@ public class homePage {
 	public String menBottomsSubLevelCategoryPageTiltles[] =  {"Pants - Bottoms - Men","Shorts - Bottoms - Men"};
 	
 	
+	//Gear top nav and its subcategory links elements
 	
+	public String gearText = "Gear";
 	
+    public String gearPageURL = "https://magento.softwaretestingboard.com/gear.html";
 	
+    public String gear_PageTitle = "Gear";
 	
+    public String gear_Categories[] = {"Bags", "Fitness Equipment", "Watches"}; 
 	
+    public String gear_SubcategoryPageURLs[] = { 
+    		
+    		"https://magento.softwaretestingboard.com/gear/bags.html",
+    		"https://magento.softwaretestingboard.com/gear/fitness-equipment.html",
+    		"https://magento.softwaretestingboard.com/gear/watches.html"
+    		   		
+    };
+    
+    public String gear_SubcategoryPageTitles[] = {"Bags - Gear", "Fitness Equipment - Gear", "Watches - Gear"};
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+    public String gear_subcategories = "//span[text()='Gear']/ancestor::a/following-sibling::ul/li/a";
 	
 
 	// Guest user Header Web Elements
