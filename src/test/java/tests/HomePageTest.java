@@ -7,6 +7,7 @@ import java.util.List;
 import javax.print.attribute.standard.JobHoldUntil;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -65,10 +66,23 @@ public class HomePageTest extends BaseTest {
 
 	}
 	@Test(priority = 2, enabled = false )
+	
 	public void pageheaderContentsValidationforGuestuser() throws InterruptedException {
 
 		homePage home = new homePage(driver);
 		boolean logoIsDisplaying = home.Logo.isDisplayed();
+		
+		List<WebElement> headerTopNav_Categories = driver.findElements(By.xpath(home.allHeaderTopNavCatsPath));
+		
+		for (int i = 0; i < headerTopNav_Categories.size(); i++) {
+			
+			String ActualHeaderTopNavLink = headerTopNav_Categories.get(i).getText();
+			
+			System.out.println(ActualHeaderTopNavLink+"=="+home.allTopNavLinks[i]);
+			
+			Assert.assertEquals(ActualHeaderTopNavLink, home.allTopNavLinks[i]);
+			
+		}
 
 		Assert.assertTrue(logoIsDisplaying);
 
@@ -444,8 +458,7 @@ public class HomePageTest extends BaseTest {
 		
 	}
 	
-
-	@Test
+	@Test(enabled = false)
 	public void verifyTrainingTopNavLink() {
 		
 		homePage home = new homePage(driver);
@@ -502,5 +515,109 @@ public class HomePageTest extends BaseTest {
 		
 	}
 	
+	@Test(enabled = false)
+	public void verifytheSaleTopNavLink() {
+	
+		homePage home = new homePage(driver);
+		
+		home.saleTopNav.click();
+		
+		String Actual_SalePage_Title = driver.getTitle();
+		
+		String Actual_SalePage_URL = driver.getCurrentUrl();
+		
+		String Actual_SalePage_Heading = driver.findElement(By.tagName("h1")).getText();
+		
+		Assert.assertEquals(Actual_SalePage_Title, home.SalePageTitle);
+		
+		Assert.assertEquals(Actual_SalePage_URL, home.SalePageURL);
+		
+		Assert.assertEquals(Actual_SalePage_Heading, home.SalePageHeading);
+		
+		
+		
+		
+	}
+	
+	@Test
+	public void verify_the_SearchBox() throws InterruptedException {
+	
+		homePage home = new homePage(driver);
+		
+		home.searchBox.sendKeys("Shirt");
+		
+		WebElement search_suggestion_flyout = driver.findElement(By.id("search_autocomplete"));
+		
+		wait.until(ExpectedConditions.visibilityOf(search_suggestion_flyout));
+		
+		boolean search_suggestiondisplaying = search_suggestion_flyout.isDisplayed();
+		
+		Assert.assertTrue(search_suggestiondisplaying);
+		
+		
+		List<WebElement> suggestion_List = driver.findElements(By.xpath("//ul[@role='listbox']//li//span[@class='qs-option-name']"));
+		
+		for (int i = 0; i < suggestion_List.size(); i++) {
+			
+			wait.until(ExpectedConditions.visibilityOf(search_suggestion_flyout));
+			
+			String suggestion_options = suggestion_List.get(i).getText();
+			
+			System.out.println("suggestionOption--->"+suggestion_options);
+			
+			home.searchBox.sendKeys(Keys.ARROW_DOWN);
+			
+			//Thread.sleep(3000);
+			
+			String Search_Box_Value = home.searchBox.getAttribute("value");
+			
+			String removed_Space_From_Search_Box_Value=Search_Box_Value.trim();
+			
+			System.out.println("selected value"+"--->"+removed_Space_From_Search_Box_Value);
+			
+			Assert.assertEquals(suggestion_options, removed_Space_From_Search_Box_Value);
+		
+		}
+		
+		suggestion_List.get(0).click();
+		
+		String getResultPageHeading = driver.findElement(By.tagName("h1")).getText();
+		
+		String fullResultHeading = getResultPageHeading.trim();
+		
+		String ExpectedResultHeading = "Search results for: 'shirt'";
+		
+		Assert.assertEquals(fullResultHeading, ExpectedResultHeading);
+		
+		home.clickheaderLogo();
+		
+		home.searchBox.sendKeys("Shirt");
+		
+		home.action.moveToElement(home.searchIcon).perform();
+		
+		String tooltip = home.searchIcon.getText();
+		
+		String actualTooltip = "Search";
+		
+		Assert.assertEquals(tooltip, actualTooltip);
+		
+		Assert.assertTrue((driver.findElement(By.xpath("//button//span[.='Search']")).isDisplayed()));
+		
+		wait.until(ExpectedConditions.elementToBeClickable(home.searchIcon));
+		
+		home.searchIcon.click();
+		
+		String getSearchResultPageHeading = driver.findElement(By.tagName("h1")).getText();
+		
+		String fullSearchResultHeading = getSearchResultPageHeading.trim();
+		
+		String ExpectedSearchResultHeading = "Search results for: 'Shirt'";
+		
+		Assert.assertEquals(fullSearchResultHeading, ExpectedSearchResultHeading);
+		
+		
 
+		
+		
+	}
 }

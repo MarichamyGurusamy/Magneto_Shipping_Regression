@@ -27,6 +27,11 @@ public class homePage {
 
 	/* xpaths and Expected subcatagory links for validating the womens top nav */
 	
+	
+	public String allTopNavLinks[] = {"What's New", "Women", "Men", "Gear", "Training", "Sale"}; 
+	
+	public String allHeaderTopNavCatsPath = "//nav[@class='navigation']//ul[@class='ui-menu ui-widget ui-widget-content ui-corner-all']//li//a[@class='level-top ui-corner-all']";
+	
 	public String WomensCategoryPageHeading = "Women";
 
 	public String WomensCategoryTitle = "Women";
@@ -260,7 +265,7 @@ public class homePage {
 	@FindBy(id = "search")
 	public WebElement searchBox;
 
-	@FindBy(xpath = "//button//span[text()='Search']")
+	@FindBy(xpath = "//button[@title='Search']")
 	public WebElement searchIcon;
 
 	@FindBy(id = "search")
@@ -707,5 +712,16 @@ public class homePage {
 	public void AvailableSubcategoryLinksUnderWomenTopNav() {
 
 	}
+	
+	
+	
+	//Sale top nav related elements
+	
+	public String SalePageHeading = "Sale";
+
+	public String SalePageTitle = "Sale";
+
+	public String SalePageURL = "https://magento.softwaretestingboard.com/sale.html";
+
 
 }
