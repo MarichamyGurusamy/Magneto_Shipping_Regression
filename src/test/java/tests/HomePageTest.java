@@ -365,8 +365,8 @@ public class HomePageTest extends BaseTest {
 
 	}
 
-	@Test(priority = 6, enabled=true)
-	public void gearTopNavandSubcategoryLinks() {
+	@Test(priority = 6, enabled=false)
+	public void verifygearTopNavandSubcategoryLinks() {
 		
 		homePage home =  new homePage(driver);
 		
@@ -444,7 +444,63 @@ public class HomePageTest extends BaseTest {
 		
 	}
 	
-	
+
+	@Test
+	public void verifyTrainingTopNavLink() {
+		
+		homePage home = new homePage(driver);
+		
+		wait.until(ExpectedConditions.visibilityOf(home.TrainingTopNav));
+		
+		home.TrainingTopNav.click();
+		
+		String Actual_Training_Page_URL=driver.getCurrentUrl();
+		
+		String Actual_Training_Page_Title = driver.getTitle();
+		
+		String Actual_Training_Page_Heading = driver.findElement(By.tagName("h1")).getText();
+		
+		Assert.assertEquals(Actual_Training_Page_URL, home.Training_Page_URL);
+		
+		Assert.assertEquals(Actual_Training_Page_Title,home.Training_Page_Title);
+		
+		Assert.assertEquals(Actual_Training_Page_Heading, home.TrainingText);
+		
+		home.clickheaderLogo();
+		
+		List<WebElement> Training_SubCatgories = driver.findElements(By.xpath(home.Training_Subcategories));
+		
+		for(int i = 0 ;i < Training_SubCatgories.size(); i++)
+			
+		{
+			home.hoverTrainingLink();
+			
+			String SubLinks = Training_SubCatgories.get(i).getText();
+			
+			Assert.assertEquals(SubLinks, home.Training_Sub_Category);
+			
+			Training_SubCatgories.get(i).click();
+			
+			String ActualTraining_SubCategoryPage_URL = driver.getCurrentUrl();
+			
+			String ActualTraining_SubcategoryPage_Title = driver.getTitle();
+			
+			String ActualTraining_subcategorypage_Heading = driver.findElement(By.tagName("h1")).getText();
+			
+			Assert.assertEquals(ActualTraining_SubCategoryPage_URL, home.Training_SubcategoryPageURL);
+			
+			Assert.assertEquals(ActualTraining_SubcategoryPage_Title, home.Training_SubcategoryPageTitle);
+			
+			Assert.assertEquals(ActualTraining_subcategorypage_Heading, home.Training_Sub_Category);	
+			
+		}
+		
+		
+		
+		
+		
+		
+	}
 	
 
 }

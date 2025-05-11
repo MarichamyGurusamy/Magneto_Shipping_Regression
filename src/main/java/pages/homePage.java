@@ -148,6 +148,23 @@ public class homePage {
     public String gear_SubcategoryPageTitles[] = {"Bags - Gear", "Fitness Equipment - Gear", "Watches - Gear"};
 	
     public String gear_subcategories = "//span[text()='Gear']/ancestor::a/following-sibling::ul/li/a";
+    
+    
+  //Training top nav and its subcategory links elements
+	
+  	public String TrainingText = "Training";
+  	
+      public String Training_Page_URL = "https://magento.softwaretestingboard.com/training.html";
+  	
+      public String Training_Page_Title = "Training";
+  	
+      public String Training_Sub_Category= "Video Download"; 
+  	
+      public String Training_SubcategoryPageURL ="https://magento.softwaretestingboard.com/training/training-video.html";
+      
+      public String Training_SubcategoryPageTitle = "Video Download - Training";
+  	
+      public String Training_Subcategories = "//span[text()='Training']/ancestor::a/following-sibling::ul/li/a";
 	
 
 	// Guest user Header Web Elements
