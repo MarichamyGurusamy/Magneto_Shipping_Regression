@@ -276,6 +276,17 @@ public class homePage {
 	@FindBy(css = ".action.showcart")
 	public WebElement miniCart;
 
+	@FindBy(xpath ="//span[@class='counter-number']")
+	public WebElement minicartProductCount;
+	
+	@FindBy(css = "div[data-role=dropdownDialog]")
+	public WebElement minicartPopup;
+	
+	public String ExpectedEmptyCartMessage = "You have no items in your shopping cart.";
+	
+	@FindBy(id = "btn-minicart-close")
+	public WebElement minicartCloseIcon;
+	
 	@FindBy(className = "breadcrumbs")
 	public WebElement breadCrumb;
 

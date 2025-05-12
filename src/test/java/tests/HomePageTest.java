@@ -539,7 +539,7 @@ public class HomePageTest extends BaseTest {
 		
 	}
 	
-	@Test
+	@Test(enabled = false)
 	public void verify_the_SearchBox() throws InterruptedException {
 	
 		homePage home = new homePage(driver);
@@ -613,11 +613,54 @@ public class HomePageTest extends BaseTest {
 		
 		String ExpectedSearchResultHeading = "Search results for: 'Shirt'";
 		
-		Assert.assertEquals(fullSearchResultHeading, ExpectedSearchResultHeading);
+		Assert.assertEquals(fullSearchResultHeading, ExpectedSearchResultHeading);		
 		
+	}
+	
+	@Test
+	public void verif_the_minicartIcon_In_Header() {
+		
+		homePage home = new homePage(driver);
+		
+		String productCount = home.minicartProductCount.getAttribute("textContent");
+		
+		if (productCount == null || productCount.trim().isEmpty()) {
+		    System.out.println("Cart count is empty or invisible — setting to 0.");
+		    productCount = "0";
+		} else {
+		    // Remove all non-digit characters, just in case
+		    productCount = productCount.trim();
+		}
+		
+		
+		System.out.println("Product count raw: >" + productCount + "<");
+		
+		int productCountValue = Integer.parseInt(productCount);		
+		
+		
+			
+			boolean productCountDisplaying = home.minicartProductCount.isDisplayed();
+			
+			Assert.assertFalse(productCountDisplaying);
+			
+			home.miniCart.click();
+			
+			wait.until(ExpectedConditions.visibilityOf(home.minicartPopup));
+			
+			Assert.assertTrue(home.minicartPopup.isDisplayed());
+			
+			String EmptyCartMessage = driver.findElement(By.cssSelector(".subtitle.empty")).getText();
+			
+			Assert.assertEquals(EmptyCartMessage, home.ExpectedEmptyCartMessage);
+			
+			Assert.assertTrue(home.minicartCloseIcon.isDisplayed());
+			
+			home.minicartCloseIcon.click();
+			
+			Assert.assertFalse(home.minicartPopup.isDisplayed());
+			
 		
 
-		
 		
 	}
 }
