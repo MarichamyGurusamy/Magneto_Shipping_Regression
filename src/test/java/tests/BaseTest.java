@@ -10,14 +10,15 @@ import utils.WebdriverManager;
 public class BaseTest extends WebdriverManager{
 
 	public WebDriver driver;
-	@BeforeMethod
+	
+	@BeforeMethod(alwaysRun = true)
 	@Parameters("browser")
 	public void setupSite(String browser) throws InterruptedException {
         driver= launchBrowser(browser);	
 		driver.get("https://magento.softwaretestingboard.com/");
 	}
 	
-	@AfterMethod
+	@AfterMethod(alwaysRun = true)
 	public void tearDown() {
 		WebdriverManager  manage =  new WebdriverManager();
 		manage.closeBrowser();
